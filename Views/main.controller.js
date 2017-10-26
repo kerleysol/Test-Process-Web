@@ -30,7 +30,7 @@ angular.module("TestProcess", ['ui.sortable']).controller("MainController", func
   }
 
   function _getData(){
-    $http.get(baseURL+"openedPullRequests",{ headers: { 'Cache-Control' : 'no-cache' } }).then(function(res){
+    $http.get(baseURL+"openedPullRequests").then(function(res){
       $scope.pullRequests = res.data
     }, function(err){
       console.log(err)
