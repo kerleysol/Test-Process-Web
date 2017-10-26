@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="TestProcess">
+  <head>
+    <meta charset="utf-8">
+    <title>Heavy Connect - Test Process</title>
+
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="libs/angular.js"></script>
+    <script type="text/javascript" src="main.controller.js"></script>
+   
+	<script type="text/javascript" src="libs/angular-ui-sortable/src/sortable.js"></script>
+
+    <style>
+    	table{
+    		width: 100%
+    	}
+		ul {
+			list-style-type: none;
+			width:100%;
+			padding: 0px 0px 0px 0px
+		}
+
+		li{
+		    border: 1px solid black;
+		    font-size: 13px;
+		    margin-bottom: 5px !important;
+		}
+		dt{
+			font-weight: bold;
+		}
+		div{
+			display: inline-block;
+		}
+		h3{
+			display: inline-block;
+		}
+		.priority{
+			float: left;
+			margin-left: 5px;
+		}
+		.title{
+			width: 100%;
+			background: #e0e0e0;
+			text-align: center;
+		}
+		.description{
+			margin: 5px;
+			padding: 5px;
+			font-size: 14px;
+
+		}
+		.no-margin{
+			margin: 0px
+		}
+		.text-center{
+			text-align: center;
+		}
+	</style>
+  </head>
+  <body ng-controller="MainController">
+  	<h1 class="text-center">Heavy Connect - Test Process</h1>
+  	<button ng-click="getData()">Update</button>
+  	
+  	<ul ui-sortable="sortableOptions" ng-model="pullRequests">
+		<li ng-repeat="pr in pullRequests">
+		  	<div class="title">
+		  		<h2 class="priority">#{{$index+1}}</h2>
+		  		<h3>{{pr.platform}} - {{pr.title}}</h3>
+		  	</div>
+			<hr class="no-margin">
+		  	<dl>
+		  		<table class="description">
+			  		<tr>
+			  			<th>Author</th>
+			  			<th>Testers</th>
+			  			<th>Created</th>
+			  			<th>Updated</th>
+			  			<th>Tested on Android</th>
+			  			<th>Tested on IOS</th>
+			  			<th>URL</th>
+			  		</tr>
+			  		<tr>
+			  			<td>{{pr.author}}</td>
+			  			<td>{{pr.testers}}</td>
+			  			<td>{{pr.created | date:'dd/MM/yy HH:mm'}}</td>
+			  			<td>{{pr.updated | date:'dd/MM/yy HH:mm'}}</td>
+			  			<td><select ng-options="op for op in options" ng-model="pr.testedOnAndroid" ng-change="changeStatus({id:pr._id, testedOnAndroid: pr.testedOnAndroid})"></select></td>
+			  			<td><select ng-options="op for op in options" ng-model="pr.testedOnIos" ng-change="changeStatus({id:pr._id, testedOnIos: pr.testedOnIos})"></select></td>
+			  			<td><a target="_blank" href="{{pr.url}}">{{pr.url}}</a></td>
+			  		</tr>
+
+		  		</table>
+				<br>
+				<div class="description">
+				  <dt>Description</dt>
+				  <dd>{{pr.description}}</dd>
+				</div>
+			</dl>
+		</li>
+	</ul>
+	</body>
+</html>
