@@ -1,0 +1,16 @@
+{
+  "name": "APIPR",
+  "version": "0.0.0",
+  "description": "Web Pull Requests",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies" : {
+  	"express" : "*",
+    "ejs": "*",
+    "heroku-ssl-redirect": "git://github.com/paulomcnally/node-heroku-ssl-redirect.git#express3x"
+  },
+  "author": "Kerley Dantas",
+  "license": "BSD-2-Clause"
+}

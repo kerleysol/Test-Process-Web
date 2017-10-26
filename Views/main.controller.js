@@ -1,6 +1,6 @@
 angular.module("TestProcess", ['ui.sortable']).controller("MainController", function($scope, $http, $interval){
-  var baseURL = "http://localhost:3000/"
-
+  // var baseURL = "http://localhost:3000/"
+  var baseURL = "https://test-process-server.herokuapp.com/"
   $scope.pullRequests = [];
   $scope.options = [true, false]
   $scope.getData = _getData
